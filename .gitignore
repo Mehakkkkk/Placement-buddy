@@ -1,0 +1,28 @@
+﻿# Dependencies
+node_modules/
+Frontend/node_modules/
+
+# Environment variables (NEVER commit secrets)
+.env
+
+# Build output
+Frontend/dist/
+Frontend/build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Spring Boot backend
+backend_java/target/
+backend_java/.mvn/wrapper/maven-wrapper.jar
+backend_java/*.iml
+backend_java/.idea/
