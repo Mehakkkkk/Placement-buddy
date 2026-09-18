@@ -90,6 +90,9 @@ placement-tracker/
 - Global exception handling via `@ControllerAdvice`
 - Move secrets (DB password, JWT secret) to environment variables
 
+## Screenshots
+
+
 ## 👤 Author
 
 Mehak — www.linkedin.com/in/greatmehak
