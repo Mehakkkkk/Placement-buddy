@@ -2,11 +2,10 @@
 
 A full-stack web application to help students manage their complete placement preparation journey — track job applications, interview rounds, DSA practice, and view progress on a live dashboard.
 
-**Live Demo:** [Add your deployed link here once deployment is complete]
 
 ## 📋 Features
 
-- **Secure Authentication** — JWT-based auth with bcrypt password hashing and protected routes
+- **Secure Authentication** — JWT-based auth with BCrypt password hashing and protected routes
 - **Company Application Tracker** — Add, edit, delete, and filter job applications by status (Applied, OA, Interview, Selected, Rejected)
 - **Interview & OA Tracker** — Log interview rounds per company, including questions asked and personal notes
 - **DSA Preparation Tracker** — Track practice questions by topic, difficulty, and solve status, with filtering
@@ -15,14 +14,15 @@ A full-stack web application to help students manage their complete placement pr
 ## 🛠️ Tech Stack
 
 **Frontend:** React.js, React Router, Axios, Vite
-**Backend:** Node.js, Express.js
+**Backend:** Java, Spring Boot, Spring Security, Spring Data JPA (Hibernate)
 **Database:** MySQL
-**Authentication:** JWT, bcrypt
+**Authentication:** JWT (JJWT), BCrypt
 
 ## 🏗️ Architecture
-React (Frontend) → REST API (Express/Node.js) → MySQL Database
 
-The frontend and backend are fully decoupled, communicating exclusively over HTTP via a RESTful API. Authentication uses JWT tokens verified by custom Express middleware, ensuring all data access is scoped to the logged-in user.
+React (Frontend) → REST API (Spring Boot) → MySQL Database
+
+The frontend and backend are fully decoupled, communicating exclusively over HTTP via a RESTful API. Authentication uses JWT tokens validated by a custom Spring Security filter, ensuring all data access is scoped to the logged-in user. The backend follows a layered architecture — Controller → Service → Repository — for clear separation of concerns.
 
 ## 🗄️ Database Schema
 
@@ -31,29 +31,29 @@ The frontend and backend are fully decoupled, communicating exclusively over HTT
 - **interview_rounds** — OA/interview details, linked to `companies` via `company_id`
 - **dsa_questions** — practice questions, linked to `users` via `user_id`
 
-All relationships enforce referential integrity via foreign keys with `ON DELETE CASCADE`.
+All relationships enforce referential integrity via foreign keys.
 
 ## 🔐 Security Highlights
 
-- Passwords hashed with bcrypt (never stored in plain text)
-- JWT-based authentication with protected routes
-- Parameterized SQL queries throughout (prevents SQL injection)
-- User-scoped data access — users can only access their own data, enforced at the database query level
-- Environment variables for all secrets (never hardcoded)
+- Passwords hashed with BCrypt (never stored in plain text)
+- JWT-based authentication with protected routes, validated on every request via a custom Spring Security filter
+- Ownership checks at the service layer — users can only access their own data
+- Spring Data JPA / Hibernate handles all database queries (protects against SQL injection by design)
 
 ## 🚀 Getting Started
 
 ### Prerequisites
+- Java 21+
 - Node.js (v18+)
 - MySQL (v8+)
 
 ### Backend Setup
 ```bash
-cd Backend
-npm install
-# Create a .env file with DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME, JWT_SECRET, PORT
-npm run dev
+cd backend_java
+# Configure DB credentials and JWT secret in src/main/resources/application.properties
+./mvnw spring-boot:run
 ```
+Runs on `http://localhost:8080`.
 
 ### Frontend Setup
 ```bash
@@ -61,16 +61,19 @@ cd Frontend
 npm install
 npm run dev
 ```
+Runs on `http://localhost:5173`.
 
 ## 📁 Project Structure
 
 placement-tracker/
-├── Backend/
-│ ├── config/ # Database connection
-│ ├── controllers/ # Business logic
-│ ├── middleware/ # JWT auth middleware
-│ ├── routes/ # API route definitions
-│ └── server.js
+├── backend_java/
+│ └── src/main/java/com/placementtracker/backend/
+│ ├── controller/ # REST endpoints
+│ ├── service/ # Business logic
+│ ├── repository/ # Data access (Spring Data JPA)
+│ ├── entity/ # JPA entities (DB tables)
+│ ├── dto/ # Request/response objects
+│ └── security/ # JWT filter, security config
 └── Frontend/
 └── src/
 ├── api/ # Axios config
@@ -84,8 +87,9 @@ placement-tracker/
 - Email reminders for upcoming deadlines
 - Data visualization charts on dashboard
 - Export application history to PDF/CSV
+- Global exception handling via `@ControllerAdvice`
+- Move secrets (DB password, JWT secret) to environment variables
 
 ## 👤 Author
 
 Mehak — www.linkedin.com/in/greatmehak
-
