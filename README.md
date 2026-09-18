@@ -91,6 +91,11 @@ placement-tracker/
 - Move secrets (DB password, JWT secret) to environment variables
 
 ## Screenshots
+<img width="1920" height="1013" alt="Screenshot (391)" src="https://github.com/user-attachments/assets/3ccaba81-52fa-458f-a53c-2ec41a6c779b" />
+<img width="1920" height="1013" alt="Screenshot (392)" src="https://github.com/user-attachments/assets/2e4d8e93-292e-4461-8c35-bc3a73dda149" />
+<img width="1920" height="939" alt="Screenshot (393)" src="https://github.com/user-attachments/assets/4479e7bc-4015-40bb-bf25-3dd3fc11f805" />
+<img width="1920" height="1080" alt="Screenshot (394)" src="https://github.com/user-attachments/assets/51382d45-1ec3-4bd7-a7ad-833970cb77f1" />
+<img width="1920" height="1009" alt="Screenshot (395)" src="https://github.com/user-attachments/assets/09c3cd94-b7bf-4e1a-838e-31f7299ec91d" />
 
 
 ## 👤 Author
